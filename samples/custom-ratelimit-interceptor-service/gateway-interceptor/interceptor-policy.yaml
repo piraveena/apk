@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # -----------------------------------------------------------------------
-apiVersion: dp.wso2.com/v1alpha2
+apiVersion: dp.wso2.com/v1alpha1
 kind: APIPolicy
 metadata:
   name: interceptor-policy-gateway-level
@@ -21,7 +21,6 @@ spec:
   override:
     requestInterceptors:
     - name: interceptor-service-gateway-level
-      namespace: apk
   targetRef:
     group: gateway.networking.k8s.io
     kind: Gateway
