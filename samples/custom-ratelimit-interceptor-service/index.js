@@ -14,6 +14,9 @@
 //  limitations under the License.
 // -----------------------------------------------------------------------
 
+
+
+
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -21,23 +24,41 @@ const jwt = require("jsonwebtoken");
 
 // Middleware to parse JSON requests
 app.use(bodyParser.json());
-
+console.log("hitttt");
 // POST route to handle JSON request
+
+
+
 app.post("/api/v1/handle-request", (req, res) => {
   const data = req.body;
   console.log(data);
+  console.log();
 
-  if (data["requestHeaders"][":path"] === "/http-bin-api-basic/1.0.8/get") {
+  const url = data["requestHeaders"][":path"];
+//  const regex = /\/1\.0\.0\/([^/]+)/;
+//  const match = url.match(regex);
+//  const tenantDomain = match ? match[1] : null;
+//  console.log("tenantDomain: " + tenantDomain);
+
+  let regex2 = /\/([a-zA-Z0-9\.]+)(\/[a-zA-Z0-9\/]+)/g;
+  let matches1 = [...url.matchAll(regex2)];
+  console.log(matches1.map(match => [match[1], match[2]]));
+
+  console.log(matches1[1]);
+  console.log(matches1[1][1]);
+  console.log(matches1[1][2]);
+
+  let tenantDomain = matches1[1][1];
+  let apiPath = matches1[1][2];
+
+  let key = tenantDomain + ":" + apiPath;
+  console.log("key: " + key);
+
     res.send({
       rateLimitKeys: {
-        rlkey_user: "bob",
+        user_key: key,
       },
-    });
-  } else {
-    res.send({
-      rateLimitKeys: {},
-    });
-  }
+    }); 
 });
 
 // Start the server on port 8080

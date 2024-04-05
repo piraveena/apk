@@ -63,7 +63,8 @@ spec:
       matches:
         - path:
             type: PathPrefix
-            value: /http-bin-api-basic/1.0.8/post/
+            value:
+
           method: POST
       filters:
         - type: URLRewrite

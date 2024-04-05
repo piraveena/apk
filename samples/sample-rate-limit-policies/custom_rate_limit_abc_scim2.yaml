@@ -1,0 +1,16 @@
+apiVersion: dp.wso2.com/v1alpha1
+kind: RateLimitPolicy
+metadata:
+  name: http-bin-ratelimit-abc-scim2
+spec:
+  override:
+    custom:
+      key: user_key
+      value: abc.com:/scim2/Users
+      requestsPerUnit: 20
+      unit: Minute
+      organization: default
+  targetRef:
+    kind: Gateway
+    name: default
+    group: gateway.networking.k8s.io

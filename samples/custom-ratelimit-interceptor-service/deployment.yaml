@@ -54,7 +54,7 @@ metadata:
 spec:
   protocol: http
   services:
-    - host: interceptor-backend-v1.apk
+    - host: interceptor-backend-v1
       port: 9081
 ---
 apiVersion: apps/v1
