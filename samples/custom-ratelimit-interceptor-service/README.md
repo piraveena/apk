@@ -38,4 +38,4 @@ kubectl apply -f resource-interceptor -n apk
 
 2. Build the Docker image using the command `docker build -t interceptor-service .`"
 
-3. Deploy the changes by running the command `kubectl apply -f deployment.yaml -n apk`"
+3. Deploy the changes by running the command `kubectl apply -f deployment.yaml`"
